@@ -29,7 +29,7 @@ end
 
 Use the keyword `watch` to watch files or file groups, for example:
 
-```
+```crystal
 watch ["src/assets/*.css", "src/views/*.html"] do |event|
   event.on_change do
     # ...
