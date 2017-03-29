@@ -22,7 +22,7 @@ watch "src/assets/js/*.js" do |event|
     files.each do |file, timestamp|
       puts "File #{file} has changed at #{timestamp}"
     end
-    handle_change
+    # ...
   end
 end
 ```
