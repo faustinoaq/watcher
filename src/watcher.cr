@@ -19,16 +19,10 @@ module Watcher
     event.status = false
     Dir.glob(files) do |file|
       timestamp = timestamp_for(file)
-      if TIMESTAMPS[file]? && TIMESTAMPS[file] != timestamp
+      if (TIMESTAMPS[file]? && TIMESTAMPS[file] != timestamp) || TIMESTAMPS[file]?.nil?
         TIMESTAMPS[file] = timestamp
         event.status = true
         event.files[file] = timestamp
-        puts "🤖  #{file}"
-      elsif TIMESTAMPS[file]?.nil?
-        TIMESTAMPS[file] = timestamp
-        event.status = true
-        event.files[file] = timestamp
-        puts "🤖  watching file: #{file}"
       end
     end
     event
