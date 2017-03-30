@@ -15,7 +15,7 @@ module Watcher
     File.stat(file).mtime.to_s("%Y%m%d%H%M%S")
   end
 
-  private def self.scan(files, event)
+  private def self.scanner(files, event)
     event.status = false
     Dir.glob(files) do |file|
       timestamp = timestamp_for(file)
@@ -38,7 +38,7 @@ module Watcher
   def self.watch(files)
     event = WatchEvent.new
     loop do
-      event = Watcher.scan(files, event)
+      event = scanner(files, event)
       yield event
       event.files.clear
       sleep 1
