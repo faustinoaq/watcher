@@ -1,5 +1,7 @@
 # watcher
 
+[![Build Status](https://travis-ci.org/faustinoaq/watcher.svg?branch=master)](https://travis-ci.org/faustinoaq/watcher)
+
 Crystal shard to watch file changes. This shard use the same code implemented [here (Guardian)](https://github.com/f/guardian/blob/master/src/guardian/watcher.cr#L45) and [here (Sentry)](https://github.com/samueleaton/sentry/blob/master/src/sentry.cr#L52).
 
 ## Installation
