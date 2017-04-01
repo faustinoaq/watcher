@@ -21,4 +21,9 @@ describe Watcher do
       break
     end
   end
+
+  it "verify config Watcher.interval" do
+    Watcher.interval = 2
+    Watcher.interval.should eq(2)
+  end
 end
