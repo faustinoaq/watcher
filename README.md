@@ -21,7 +21,7 @@ Use the keyword `watch` to watch files or file groups, for example:
 ```crystal
 require "watcher"
 
-watch "src/assets/js/*.js", interval: 5.seconds do |event|
+watch "src/assets/js/*.js" do |event|
   event.on_change do |files|
     files.each do |file, timestamp|
       puts "File #{file} has changed at #{timestamp}"
@@ -40,6 +40,11 @@ spawn do
       # ...
     end
   end
+end
+
+# Other watcher
+watch ... do |event|
+ #...
 end
 ```
 
