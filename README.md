@@ -51,7 +51,7 @@ end
 Also you can change time interval for a watcher.
 
 ```crystal
-watch "public/big_project/*", interval: 5.seconds do |event|
+watch "public/*.json", interval: 0.5.seconds do |event|
   event.on_change do
     # ...
   end
