@@ -16,10 +16,12 @@ dependencies:
 
 ## Usage
 
+Use the keyword `watch` to watch files or file groups, for example:
+
 ```crystal
 require "watcher"
 
-watch "src/assets/js/*.js" do |event|
+watch "src/assets/js/*.js", interval: 5.seconds do |event|
   event.on_change do |files|
     files.each do |file, timestamp|
       puts "File #{file} has changed at #{timestamp}"
@@ -29,16 +31,22 @@ watch "src/assets/js/*.js" do |event|
 end
 ```
 
-Use the keyword `watch` to watch files or file groups, for example:
+Aso you can have more than one watcher, just use `spawn`
 
 ```crystal
-watch ["src/assets/*.css", "src/views/*.html"] do |event|
-  event.on_change do
-    # ...
+spawn do
+  watch ["src/assets/*.css", "src/views/*.html"] do |event|
+    event.on_change do
+      # ...
+    end
   end
-end
+ens
+```
 
-watch "src/assets/bundle.js" do |event|
+Also you can change time interval for a watcher.
+
+```crystal
+watch "public/big_project/*", interval: 5.seconds do |event|
   event.on_change do
     # ...
   end
