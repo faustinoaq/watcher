@@ -40,7 +40,7 @@ spawn do
       # ...
     end
   end
-ens
+end
 ```
 
 Also you can change time interval for a watcher.
