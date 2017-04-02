@@ -35,4 +35,19 @@ describe Watcher do
       break
     end
   end
+
+  it "more than one watcher" do
+    spawn do
+      Watcher.watch(TEST_FILE) do |event|
+        sleep 1
+        File.delete("spec/foo").should eq(nil)
+        break
+      end
+    end
+    Watcher.watch(TEST_FILE) do |event|
+      File.write("spec/foo", "")
+      sleep 2
+      break
+    end
+  end
 end
