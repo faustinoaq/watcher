@@ -3,16 +3,13 @@ require "./watcher/*"
 module Watcher
   TIMESTAMPS = {} of String => String
 
-  @@interval = 1
-
-  # Allow to change file scan time interval
-  def self.interval=(value : Int32)
-    @@interval = value
-  end
-
   # Class to save file changes
   private class WatchEvent
     property status = false, files = {} of String => String
+    getter interval
+
+    def initialize(@interval : Int32)
+    end
 
     # Allow to yield a block when a file changes
     def on_change
@@ -39,13 +36,13 @@ module Watcher
   end
 
   # Allow to watch file changes using Watcher.watch
-  def self.watch(files)
-    event = WatchEvent.new
+  def self.watch(files, interval = 1)
+    event = WatchEvent.new(interval)
     loop do
       event = scanner(files, event)
       yield event
       event.files.clear
-      sleep @@interval
+      sleep event.interval
     end
   end
 end
