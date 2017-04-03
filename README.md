@@ -31,7 +31,7 @@ watch "src/assets/js/*.js" do |event|
 end
 ```
 
-Aso you can have more than one watcher, just use `spawn`
+Also you can have more than one watcher, just use `spawn`
 
 ```crystal
 spawn do
@@ -48,7 +48,7 @@ watch ... do |event|
 end
 ```
 
-Also you can change time interval for a watcher.
+And you can change time interval for a watcher.
 
 ```crystal
 watch "public/*.json", interval: 0.5.seconds do |event|
