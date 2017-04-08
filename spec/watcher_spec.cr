@@ -3,7 +3,7 @@ require "./spec_helper"
 describe Watcher do
   it "create timestamps correctly" do
     timestamp = Watcher.timestamp_for(TEST_FILE)
-    timestamp.size.should eq(14)
+    timestamp.size.should eq(18)
   end
 
   it "verify Watcher::WatchEvent.event.change" do
