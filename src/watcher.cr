@@ -19,7 +19,7 @@ module Watcher
 
   # Get file timestamp using File.stat
   def self.timestamp_for(file : String)
-    File.stat(file).mtime.to_s("%Y%m%d%H%M%S")
+    File.stat(file).mtime.to_s("%Y%m%d%H%M%S.%L")
   end
 
   private def self.scanner(files, event)
