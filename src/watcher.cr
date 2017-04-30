@@ -36,7 +36,7 @@ module Watcher
   end
 
   # Allow to watch file changes using Watcher.watch
-  def self.watch(files, interval = 1)
+  def self.watch(files, interval = 1 : Int32 |  Float64)
     event = WatchEvent.new(interval)
     loop do
       event = scanner(files, event)
@@ -48,7 +48,7 @@ module Watcher
 end
 
 # Allow to watch file changes
-def watch(files, interval = 1)
+def watch(files, interval = 1 : Int32 | Float64)
   Watcher.watch(files, interval) do |event|
     yield event
   end
