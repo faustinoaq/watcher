@@ -8,7 +8,7 @@ module Watcher
     property status = false, files = {} of String => String
     getter interval
 
-    def initialize(@interval : Int32)
+    def initialize(@interval : Int32 | Float64)
     end
 
     # Allow to yield a block when a file changes
@@ -36,7 +36,7 @@ module Watcher
   end
 
   # Allow to watch file changes using Watcher.watch
-  def self.watch(files, interval : Int32 |  Float64 = 1)
+  def self.watch(files, interval = 1)
     event = WatchEvent.new(interval)
     loop do
       event = scanner(files, event)
@@ -48,7 +48,7 @@ module Watcher
 end
 
 # Allow to watch file changes
-def watch(files, interval : Int32 | Float64 = 1)
+def watch(files, interval = 1)
   Watcher.watch(files, interval) do |event|
     yield event
   end
