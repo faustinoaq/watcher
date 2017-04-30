@@ -48,8 +48,8 @@ module Watcher
 end
 
 # Allow to watch file changes
-def watch(files)
-  Watcher.watch(files) do |event|
+def watch(files, interval = 1)
+  Watcher.watch(files, interval) do |event|
     yield event
   end
 end
