@@ -6,6 +6,8 @@ Crystal shard to watch file changes. This shard use the same code implemented [h
 
 ## Installation
 
+Hi!
+
 Add this to your application's `shard.yml`:
 
 ```yaml
