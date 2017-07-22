@@ -30,8 +30,8 @@ describe Watcher do
   end
 
   it "change WatcherEvent interval" do
-    Watcher.watch(TEST_FILE, 2) do |event|
-      event.interval.should eq(2)
+    Watcher.watch(TEST_FILE, interval: 0.5) do |event|
+      event.interval.should eq(0.5)
       break
     end
   end
