@@ -8,8 +8,8 @@ describe Watcher do
 
   it "verify Watcher::WatchEvent.event.change" do
     Watcher.watch(TEST_FILE) do |event|
-      event.status = true
-      event.status.should eq(true)
+      event.changed = true
+      event.changed.should eq(true)
       break
     end
   end
