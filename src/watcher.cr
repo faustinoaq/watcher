@@ -47,7 +47,7 @@ module Watcher
   end
 
   def self.watch(files)
-    self.watch(files, 1)
+    self.watch(files, 1) { yield }
   end
 end
 
@@ -60,5 +60,5 @@ end
 
 # :ditto:
 def watch(files)
-  watch(files, 1)
+  watch(files, 1) { yield }
 end
