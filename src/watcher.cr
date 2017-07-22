@@ -5,7 +5,7 @@ module Watcher
 
   # Class to save file changes
   private class WatchEvent
-    property status = false, files = {} of String => String
+    property changed = false, files = {} of String => String
     getter interval
 
     def initialize(@interval : Int32 | Float64)
@@ -13,7 +13,7 @@ module Watcher
 
     # Allow to yield a block when a file changes
     def on_change
-      yield files if status
+      yield files if changed
     end
   end
 
@@ -23,12 +23,12 @@ module Watcher
   end
 
   private def self.scanner(files, event)
-    event.status = false
+    event.changed = false
     Dir.glob(files) do |file|
       timestamp = timestamp_for(file)
       if (TIMESTAMPS[file]? && TIMESTAMPS[file] != timestamp) || TIMESTAMPS[file]?.nil?
         TIMESTAMPS[file] = timestamp
-        event.status = true
+        event.changed = true
         event.files[file] = timestamp
       end
     end
@@ -36,7 +36,7 @@ module Watcher
   end
 
   # Allow to watch file changes using Watcher.watch
-  def self.watch(files, interval = 1)
+  def self.watch(files, interval : Int32 | Float64)
     event = WatchEvent.new(interval)
     loop do
       event = scanner(files, event)
@@ -45,11 +45,20 @@ module Watcher
       sleep event.interval
     end
   end
+
+  def self.watch(files)
+    self.watch(files, 1)
+  end
 end
 
 # Allow to watch file changes
-def watch(files, interval = 1)
+def watch(files, interval)
   Watcher.watch(files, interval) do |event|
     yield event
   end
+end
+
+# :ditto:
+def watch(files)
+  watch(files, 1)
 end
