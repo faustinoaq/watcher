@@ -16,8 +16,7 @@ describe Watcher do
 
   it "verify Watcher::WatchEvent.event.files" do
     Watcher.watch(TEST_FILE) do |event|
-      event.files[TEST_FILE] = timestamp = Watcher.timestamp_for(TEST_FILE)
-      event.files.should eq({TEST_FILE => timestamp})
+      event.files.should eq({TEST_FILE => {true, timestamp}})
       break
     end
   end
