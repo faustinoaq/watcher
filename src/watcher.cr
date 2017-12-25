@@ -41,7 +41,6 @@ module Watcher
     loop do
       event = scanner(files, event)
       yield event
-      event.files.clear
       sleep event.interval
     end
   end
