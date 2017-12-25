@@ -23,7 +23,7 @@ require "watcher"
 
 watch "src/assets/js/*.js" do |event|
   event.on_change do |files|
-    files.each do |file, timestamp|
+    files.each do |file, {first, timestamp}|
       puts "File #{file} has changed at #{timestamp}"
     end
     # ...
