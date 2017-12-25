@@ -1,11 +1,9 @@
 require "./watcher/*"
 
 module Watcher
-  TIMESTAMPS = {} of String => String
-
   # Class to save file changes
   private class WatchEvent
-    property changed = false, files = {} of String => String
+    property changed = false, files = {} of String => Tuple(Bool, String)
     getter interval
 
     def initialize(@interval : Int32 | Float64)
@@ -26,10 +24,12 @@ module Watcher
     event.changed = false
     Dir.glob(files) do |file|
       timestamp = timestamp_for(file)
-      if (TIMESTAMPS[file]? && TIMESTAMPS[file] != timestamp) || TIMESTAMPS[file]?.nil?
-        TIMESTAMPS[file] = timestamp
+      if (event.files[file]? && event.files[file].last != timestamp)
+        event.files[file] = {false, timestamp}
         event.changed = true
-        event.files[file] = timestamp
+      elsif event.files[file]?.nil?
+        event.files[file] = {true, timestamp}
+        event.changed = true
       end
     end
     event
