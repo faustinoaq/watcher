@@ -2,8 +2,7 @@ require "./spec_helper"
 
 describe Watcher do
   it "create timestamps correctly" do
-    timestamp = Watcher.timestamp_for(TEST_FILE)
-    timestamp.size.should eq(18)
+    TIMESTAMP.size.should eq(18)
   end
 
   it "verify Watcher::WatchEvent.event.change" do
@@ -16,7 +15,7 @@ describe Watcher do
 
   it "verify Watcher::WatchEvent.event.files" do
     Watcher.watch(TEST_FILE) do |event|
-      event.files.should eq({TEST_FILE => {true, timestamp}})
+      event.files.should eq({TEST_FILE => {true, TIMESTAMP}})
       break
     end
   end
