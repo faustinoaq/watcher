@@ -1,4 +1,4 @@
-# watcher
+<p align="center"><img src="logo/logotype_horizontal.png" alt="watcher" height="100px"></p>
 
 [![Build Status](https://travis-ci.org/faustinoaq/watcher.svg?branch=master)](https://travis-ci.org/faustinoaq/watcher)
 
